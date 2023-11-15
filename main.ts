@@ -1,4 +1,4 @@
-// GROUP MB3-B
+// GROUP MB-B
 // moving wall W2, switch S2, display D2
 // radio from RESET
 // radio from MB-C
