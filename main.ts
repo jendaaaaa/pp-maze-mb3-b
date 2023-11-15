@@ -11,8 +11,6 @@ radio.setGroup(8);
 led.enable(false);
 let displaySegment = TM1637.create(PIN_SCL, PIN_SDA, 10, 4);
 pins.setPull(PIN_BUTTON, PinPullMode.PullUp);
-apds9960.Init(11.12)
-apds9960.ColorMode()
 
 // DEBOUNCING
 let buttonState = 0;
