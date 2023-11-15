@@ -41,7 +41,8 @@ let RADIO_CLOSE = 2;
 
 // VARIABLES
 let servoSpeed = SERVO_STOP;
-let colorIsCorrect = false;
+let requestFromColor = 0;
+let requestFromTimer = 0;
 
 // INTERRUPT
 radio.onReceivedNumber(function (receivedNumber) {
@@ -54,33 +55,50 @@ radio.onReceivedNumber(function (receivedNumber) {
 
 radio.onReceivedValue(function(name: string, value: number) {
     if (name === "C3"){
-        if (value === 1){
-            colorIsCorrect = true;
-        } else if (value === 0) {
-            colorIsCorrect = false;
-        }
+        requestFromColor = value;
+    }
+    if (name === "TIMER"){
+        resetState();
     }
 })
 
 // MAIN
+gateOpen();
 basic.forever(function () {
     debounceButton();
-    // color sensor C3
-    if (colorIsCorrect){
-        gateOpen();
-    } else {
-        gateClose();
-    }
-    // switch timer S2
     if (isMeasured) {
         if (input.runningTime() - timeFromPress > TIME_TO_OPEN) {
-            gateClose();
+            requestFromTimer = 1;
             isMeasured = false;
+        } else {
+            requestFromTimer = 0;
+        }
+    } else {
+        
+    }
+    pins.servoWritePin(PIN_SERVO, servoSpeed);
+})
+
+basic.forever(function() {
+    if (requestFromColor){
+        if (requestFromTimer){
+            gateClose();
         } else {
             gateOpen();
         }
+    } else {
+        gateClose();
     }
-    pins.servoWritePin(PIN_SERVO, servoSpeed);
+
+    // if (requestFromColor && requestFromTimer){
+    //     gateClose();
+    // } else if (requestFromColor && !requestFromTimer){
+    //     gateOpen();
+    // } else if (!requestFromColor && requestFromTimer){
+    //     resetState();
+    // } else {
+    //     gateClose();
+    // }
 })
 
 basic.forever(function () {
