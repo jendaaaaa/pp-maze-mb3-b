@@ -89,16 +89,6 @@ basic.forever(function() {
     } else {
         gateClose();
     }
-
-    // if (requestFromColor && requestFromTimer){
-    //     gateClose();
-    // } else if (requestFromColor && !requestFromTimer){
-    //     gateOpen();
-    // } else if (!requestFromColor && requestFromTimer){
-    //     resetState();
-    // } else {
-    //     gateClose();
-    // }
 })
 
 basic.forever(function () {
@@ -120,18 +110,21 @@ function debounceButton () {
             buttonState = buttonRead;
             if (buttonState == PIN_PRESSED) {
                 isMeasured = true;
+                timeFromPress = input.runningTime();
             } else {
+
                 isMeasured = false;
             }
-            timeFromPress = input.runningTime();
         }
     }
     lastButtonState = buttonRead;
 }
 
 function resetState() {
-    gateClose();
+    // gateClose();
     timeElapsed = 0;
+    requestFromColor = 0;
+    requestFromTimer = 0;
 }
 
 //////////////////////////////////////////////////////////////////
