@@ -121,13 +121,10 @@ function debounceButton () {
 }
 
 function resetState() {
-    // gateClose();
     timeElapsed = 0;
     requestFromColor = 0;
     requestFromTimer = 0;
 }
-
-//////////////////////////////////////////////////////////////////
 
 function gateClose() {
     if (pins.digitalReadPin(PIN_SWITCH_OPEN)) {
