@@ -12,7 +12,7 @@ let PIN_SWITCH_OPEN = DigitalPin.P8;
 let PIN_SWITCH_CLOSE = DigitalPin.P9;
 
 radio.setGroup(8);
-led.enable(false);
+basic.showString("B");
 let displaySegment = TM1637.create(PIN_SCL, PIN_SDA, 10, 4);
 pins.setPull(PIN_BUTTON, PinPullMode.PullUp);
 pins.setPull(PIN_SWITCH_CLOSE, PinPullMode.PullUp);
