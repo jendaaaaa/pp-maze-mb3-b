@@ -3,6 +3,8 @@
 // radio from RESET
 // radio from MB-C
 
+// LAST UPDATE 12/18
+
 // INIT
 let PIN_SCL = DigitalPin.P19;
 let PIN_SDA = DigitalPin.P20;
@@ -33,7 +35,7 @@ let PIN_RELEASED = 1;
 // CONSTANTS
 let TIME_TO_OPEN = 5000;
 let SERVO_STOP = 90
-let SERVO_SPEED = 70;
+let SERVO_SPEED = 90;
 let SERVO_OPEN = SERVO_STOP + SERVO_SPEED;
 let SERVO_CLOSE = SERVO_STOP - SERVO_SPEED;
 let RADIO_RESET = 1;
@@ -63,7 +65,7 @@ radio.onReceivedValue(function(name: string, value: number) {
 })
 
 // MAIN
-gateOpen();
+gateClose();
 basic.forever(function () {
     debounceButton();
     if (isMeasured) {
