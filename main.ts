@@ -3,7 +3,7 @@
 // radio from RESET
 // radio from MB-C
 
-// LAST UPDATE 12/18
+// LAST UPDATE 07/01/24
 
 // INIT
 let PIN_SCL = DigitalPin.P19;
@@ -13,7 +13,7 @@ let PIN_BUTTON = DigitalPin.P1;
 let PIN_SWITCH_OPEN = DigitalPin.P8;
 let PIN_SWITCH_CLOSE = DigitalPin.P9;
 
-radio.setGroup(8);
+radio.setGroup(9);
 basic.showString("B");
 let displaySegment = TM1637.create(PIN_SCL, PIN_SDA, 10, 4);
 pins.setPull(PIN_BUTTON, PinPullMode.PullUp);
